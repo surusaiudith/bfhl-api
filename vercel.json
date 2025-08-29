@@ -1,9 +1,9 @@
 {
   "version": 2,
   "builds": [
-    { "src": "api/bfhl.js", "use": "@vercel/node" }
+    { "src": "bfhl.js", "use": "@vercel/node" }
   ],
   "routes": [
-    { "src": "/bfhl", "dest": "/api/bfhl.js" }
+    { "src": "/bfhl", "dest": "/bfhl.js" }
   ]
 }
