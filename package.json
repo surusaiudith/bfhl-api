@@ -15,5 +15,5 @@
     "express": "^5.1.0",
     "helmet": "^8.1.0"
   }
+  npm install @vendia/serverless-express
 }
-npm install @vendia/serverless-express
