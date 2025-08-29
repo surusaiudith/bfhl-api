@@ -1,21 +1,20 @@
 // api/bfhl.js
 const express = require('express');
 const serverless = require('@vendia/serverless-express');
-require('dotenv').config();
 
 const app = express();
 app.use(express.json());
 
-// Helper functions
-const isPureNumber = t => /^-?\\d+$/.test(t);
+// helpers
+const isPureNumber = t => /^-?\d+$/.test(t);
 const isPureAlpha = t => /^[A-Za-z]+$/.test(t);
 
-// Your POST logic
 app.post('/bfhl', (req, res) => {
   const { data } = req.body || {};
-  if (!Array.isArray(data)) return res.status(400).json({ is_success: false, error: '"data" must be an array' });
+  if (!Array.isArray(data)) {
+    return res.status(400).json({ is_success: false, error: '"data" must be an array' });
+  }
 
-  // As implemented earlier...
   let even_numbers = [], odd_numbers = [], alphabets = [], special_characters = [], sum = 0;
   const lettersForConcat = [];
 
@@ -37,9 +36,10 @@ app.post('/bfhl', (req, res) => {
     .map((ch, idx) => (idx % 2 === 0 ? ch.toUpperCase() : ch.toLowerCase()))
     .join('');
 
-  const full_name = (process.env.FULL_NAME || 'john_doe').toLowerCase().replace(/\\s+/g, '_');
+  const full_name = (process.env.FULL_NAME || 'john_doe').toLowerCase().replace(/\s+/g, '_');
   const dob = process.env.DOB || '17091999';
-  const response = {
+
+  res.json({
     is_success: true,
     user_id: `${full_name}_${dob}`,
     email: process.env.EMAIL || '',
@@ -50,8 +50,7 @@ app.post('/bfhl', (req, res) => {
     special_characters,
     sum: String(sum),
     concat_string
-  };
-  res.json(response);
+  });
 });
 
 module.exports = serverless({ app });
