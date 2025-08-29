@@ -16,3 +16,4 @@
     "helmet": "^8.1.0"
   }
 }
+npm install @vendia/serverless-express
