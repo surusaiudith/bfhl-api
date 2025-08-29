@@ -1,9 +1,9 @@
 {
   "name": "bfhl-api",
   "version": "1.0.0",
-  "main": "api/bfhl.js",
+  "main": "bfhl.js",
   "scripts": {
-    "start": "node api/bfhl.js"
+    "start": "node bfhl.js"
   },
   "keywords": [],
   "author": "",
